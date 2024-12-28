@@ -26,6 +26,11 @@ const uploadFile_catbox = async (fileObj) => {
       },
       body: formData,
     });
+
+
+    // (ಥ﹏ಥ) 
+     // ( ͡° ͜ʖ ͡°) 
+
     const data = await res.text();
 
     console.log("file uploaded ", data);

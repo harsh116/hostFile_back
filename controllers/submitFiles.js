@@ -53,6 +53,8 @@ const handleSubmitFiles = async (req, res) => {
     };
 
     // if array is empty or last of piece of last file 'isEnd' is true
+    // last piece of last file bcz so that next time when file batch comes
+  // then for next pieces of first file 'isStart': true
     if (fileObjs.length == 0 || getLast(getLast(fileObjs)).isEnd === "true") {
       isStart = true;
     } else {
