@@ -1,7 +1,9 @@
 const fs = require("fs");
+require("dotenv").config();
 
 const { consoleWrite } = require("./others/helpers");
-console.log = consoleWrite;
+// console.log = process.env.PRODUCTION === "prod" ? consoleWrite : console.log;
+// process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
 
 const express = require("express");
 const app = express();
@@ -9,7 +11,7 @@ const multer = require("multer");
 
 const upload = multer({ dest: "uploads/" });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 const fetch = require("node-fetch");
 // const {fileFromSync}= require("node-fetch-commonjs");

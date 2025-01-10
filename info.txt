@@ -1,0 +1,41 @@
+info
+
+data recieved from client : headers : content-type : multipart-formdata
+"file", "pos", "isEnd", "fileName", "total", "fileIndex" ,"hostname"
+
+data sent to client :
+depending upon state of response there are 2 structures of response
+response once part of file upload but remaining parts are there
+{ status: "ok", message : string, isCompleted: false }
+response once all parts of file is sent to server and file links generated
+{ status: "ok", message, fileLinks : [ {status: string, data : string, filename: string}, ... ], isCompleted: true }
+-> data is filelink
+-> filelinks array contains objects where each object contains info of uploaded file
+error
+{status : "error"}
+
+catbox
+payload : headers {filename : ogname}
+body : FormData {reqType, fileToUpload}
+response : <upload_url> : string(text)
+
+uploadFile
+// accepts object {file : buffer, ogName: string}
+// returns {status, data: string | undefined} : data is filelink, status : 'ok' | 'error'
+
+fileObjs :
+// fileObjs : [ [filePieceObj1,filePieceObj2], [filePieceObj1,filePieceObj2] ] : contains miltiple files, each file is array which consist of filePieceObj
+// filePieceObj : {pos,isEnd,file,ogname,name,fileindex} : pos in position of filepiece, isEnd determines if all pieces of file are transferred or not
+// ogname : original name , file : blob object :
+// {
+//   fieldname: 'file',
+//   originalname: 'blob',
+//   encoding: '7bit',
+//   mimetype: 'application/octet-stream',
+//   destination: 'uploads/',
+//   filename: '8ca3b730b31ae895537ddb9b714afbc8',
+//   path: 'uploads/8ca3b730b31ae895537ddb9b714afbc8',
+//   size: 3915
+// }
+//
+// name : filename(not ogname), fileindex : useful for multiple files, determining index of file incoming

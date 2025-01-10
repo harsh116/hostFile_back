@@ -2,10 +2,12 @@ const FormData = require("form-data");
 const fetch = require("node-fetch");
 
 const { consoleWrite } = require("../others/helpers");
-console.log = consoleWrite;
+process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
 
 const catboxURL = "https://catbox.moe/user/api.php";
 
+// accepts fileObj,
+// returns {status, data | undefined}
 const uploadFile_catbox = async (fileObj) => {
   const formData = new FormData();
 
@@ -27,9 +29,8 @@ const uploadFile_catbox = async (fileObj) => {
       body: formData,
     });
 
-
-    // (ಥ﹏ಥ) 
-     // ( ͡° ͜ʖ ͡°) 
+    // (ಥ﹏ಥ)
+    // ( ͡° ͜ʖ ͡°)
 
     const data = await res.text();
 

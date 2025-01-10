@@ -1,8 +1,11 @@
-
-const { mergeFile, getLast,getUploadHostFunction } = require("../others/helpers");
+const {
+  mergeFile,
+  getLast,
+  getUploadHostFunction,
+} = require("../others/helpers");
 
 const { consoleWrite } = require("../others/helpers");
-console.log = consoleWrite;
+// console.log = process.env.PRODUCTION === "prod" ? consoleWrite : console.log;
 
 const {
   fileLinksState,
@@ -12,23 +15,39 @@ const {
 const fileLinks = fileLinksState.data;
 const fileObjs = fileObjsState.data;
 
-
-
+// fileObjs : [ [filePieceObj1,filePieceObj2], [filePieceObj1,filePieceObj2] ] : contains miltiple files, each file is array which consist of filePirceObj
+// filePieceObj : {pos,isEnd,file,ogname,name,fileindex} : pos in position of filepiece, isEnd determines if all pieces of file are transferred or not
+// ogname : original name , file : blob object :
+// {
+//   fieldname: 'file',
+//   originalname: 'blob',
+//   encoding: '7bit',
+//   mimetype: 'application/octet-stream',
+//   destination: 'uploads/',
+//   filename: '8ca3b730b31ae895537ddb9b714afbc8',
+//   path: 'uploads/8ca3b730b31ae895537ddb9b714afbc8',
+//   size: 3915
+// }
+//
+// name : filename(not ogname), fileindex : useful for multiple files, determining index of file incoming
 const handleSubmitFiles = async (req, res) => {
   // const fD = req.body;
 
   try {
+    // when every files work is finished then clearing up filelinks and fileObjs
     if (totalState.data == 0) {
       fileLinks.splice(0, fileLinks.length);
+      fileObjs.splice(0, fileObjs.length);
     }
 
     const file = req.files["file"][0]; // Access the uploaded file
+    console.log("typeof file: ", typeof file);
     const pos = req.body["pos"]; // Access 'pos' field
     const isEnd = req.body["isEnd"];
     const fileName = req.body["fileName"];
     totalState.setData(Number(req.body["total"]));
     const fileIndex = Number(req.body["fileIndex"]);
-    const hostname=req.body['hostname']
+    const hostname = req.body["hostname"];
 
     // determining if current piece is beginning or not
     let isStart = false;
@@ -54,7 +73,7 @@ const handleSubmitFiles = async (req, res) => {
 
     // if array is empty or last of piece of last file 'isEnd' is true
     // last piece of last file bcz so that next time when file batch comes
-  // then for next pieces of first file 'isStart': true
+    // then for next pieces of first file 'isStart': true
     if (fileObjs.length == 0 || getLast(getLast(fileObjs)).isEnd === "true") {
       isStart = true;
     } else {
@@ -72,8 +91,8 @@ const handleSubmitFiles = async (req, res) => {
       console.log("isEnd true ");
       const buffer = mergeFile();
 
-      console.log('hostname:',hostname)
-      const uploadFile=getUploadHostFunction(hostname)
+      console.log("hostname:", hostname);
+      const uploadFile = getUploadHostFunction(hostname);
 
       const resObj = await uploadFile({ file: buffer, ogName: fileName });
       // const resObj = await uploadFile_catbox({ file: buffer, ogName: fileName });

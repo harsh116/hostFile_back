@@ -15,3 +15,54 @@
 20/12/2023, 12:29:16 am
 ["app is running in PORT ",8080]
 
+9/1/2025, 4:04:01 am
+["app is running in PORT ",8081]
+
+9/1/2025, 4:04:08 am
+["body: ",{"pos":"0","isEnd":"true","fileName":"yui.jpg","total":"1","fileIndex":"0","hostname":"catbox"}]
+
+9/1/2025, 4:04:08 am
+["file: ",{"fieldname":"file","originalname":"blob","encoding":"7bit","mimetype":"application/octet-stream","destination":"uploads/","filename":"645418fef23373db83423592c4c553f6","path":"uploads/645418fef23373db83423592c4c553f6","size":3915}]
+
+9/1/2025, 4:04:08 am
+["isEnd true "]
+
+9/1/2025, 4:04:08 am
+["in mergeFile"]
+
+9/1/2025, 4:04:08 am
+["arrBuffer "]
+
+9/1/2025, 4:04:08 am
+["hostname:","catbox"]
+
+9/1/2025, 4:04:08 am
+["switch catbox"]
+
+9/1/2025, 4:04:08 am
+["before uploading"]
+
+9/1/2025, 4:06:22 am
+["error: ",{"message":"request to https://catbox.moe/user/api.php failed, reason: connect ETIMEDOUT 108.181.20.35:443","type":"system","errno":"ETIMEDOUT","code":"ETIMEDOUT"}]
+
+9/1/2025, 4:06:22 am
+["fileLinks: ",[{"status":"error","filename":"yui.jpg"}]]
+
+9/1/2025, 4:06:22 am
+["total: ",1]
+
+9/1/2025, 4:06:22 am
+["fileIndex: ",0]
+
+9/1/2025, 4:06:22 am
+["final end reached"]
+
+9/1/2025, 4:09:18 am
+["app is running in PORT ",8081]
+
+9/1/2025, 4:09:47 am
+["app is running in PORT ",8081]
+
+9/1/2025, 4:14:51 am
+["app is running in PORT ",8081]
+

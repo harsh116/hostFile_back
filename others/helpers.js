@@ -1,5 +1,14 @@
 const fs = require("fs");
+// const { Readable } = require("stream");
+
 const { fileObjsState } = require("./states");
+
+// const bufferToStream = (buffer) => {
+//   const readable = new Readable();
+//   readable.push(buffer);
+//   readable.push(null);
+//   return readable;
+// };
 
 const consoleWrite = (...data) => {
   const date = new Date();
@@ -11,14 +20,13 @@ const consoleWrite = (...data) => {
   fs.appendFileSync(`${__dirname}/log.txt`, "\n\n");
 };
 
-
-
 // const consoleWrite = console.log;
 
 const uploadFile_catbox = require("../hosts/catbox");
 const uploadFile_sdrive = require("../hosts/sdrive");
+const uploadFile_sirv = require("../hosts/sirv");
 
-console.log = consoleWrite;
+// console.log = consoleWrite;
 
 const getLast = (arr) => {
   if (arr.length > 0) return arr[arr.length - 1];
@@ -50,28 +58,38 @@ const mergeFile = () => {
   // fs.writeFileSync(`uploads/${ogname}`,mergedFileBuffer)
 };
 
+// options available : catbox, sdrive, sirv
+const getUploadHostFunction = (hostname) => {
+  let uploadFile;
+  switch (hostname) {
+    case "catbox":
+      console.log("switch catbox");
+      // uploadFile=uploadFile_catbox
+      return uploadFile_catbox;
+      // statements_1
+      break;
+    case "sdrive":
+      console.log("switch sdrive");
+      // uploadFile=uploadFile_sdrive
+      return uploadFile_sdrive;
+      break;
+    case "sirv":
+      console.log("switch sirv");
+      return uploadFile_sirv;
+      break;
+    default:
+      console.log("switch default");
+      // statements_def
+      break;
 
-const getUploadHostFunction=(hostname)=>{
-	let uploadFile;
-	switch (hostname) {
-		case 'catbox': 
-			console.log('switch catbox')
-			// uploadFile=uploadFile_catbox
-			return uploadFile_catbox
-			// statements_1
-			break;
-		case 'sdrive': 
-		console.log('switch sdrive')
-		// uploadFile=uploadFile_sdrive
-		return uploadFile_sdrive
-		break;
-		default:
-			console.log('switch default')
-			// statements_def
-			break;
+      return null;
+  }
+};
 
-	return null
-	}
-}
-
-module.exports = { mergeFile, getLast, consoleWrite, getUploadHostFunction };
+module.exports = {
+  mergeFile,
+  getLast,
+  consoleWrite,
+  getUploadHostFunction,
+  // bufferToStream,
+};
