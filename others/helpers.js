@@ -25,6 +25,7 @@ const consoleWrite = (...data) => {
 const uploadFile_catbox = require("../hosts/catbox");
 const uploadFile_sdrive = require("../hosts/sdrive");
 const uploadFile_sirv = require("../hosts/sirv");
+const uploadFile_cloudinary = require("../hosts/cloudinary");
 
 // console.log = consoleWrite;
 
@@ -76,6 +77,10 @@ const getUploadHostFunction = (hostname) => {
     case "sirv":
       console.log("switch sirv");
       return uploadFile_sirv;
+      break;
+    case "cloudinary":
+      console.log("switch cloudinary");
+      return uploadFile_cloudinary;
       break;
     default:
       console.log("switch default");
