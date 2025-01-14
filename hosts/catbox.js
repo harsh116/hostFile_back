@@ -2,7 +2,7 @@ const FormData = require("form-data");
 const fetch = require("node-fetch");
 
 const { consoleWrite } = require("../others/helpers");
-process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
+process.env.ENVIRONMENT === "prod" ? (console.log = consoleWrite) : "";
 
 const catboxURL = "https://catbox.moe/user/api.php";
 

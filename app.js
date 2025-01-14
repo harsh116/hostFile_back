@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const { consoleWrite } = require("./others/helpers");
 // console.log = process.env.PRODUCTION === "prod" ? consoleWrite : console.log;
-// process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
+process.env.ENVIRONMENT === "prod" ? (console.log = consoleWrite) : "";
 
 const express = require("express");
 const app = express();

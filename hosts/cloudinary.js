@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const { consoleWrite } = require("../others/helpers");
 
-process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
+process.env.ENVIRONMENT === "prod" ? (console.log = consoleWrite) : "";
 
 const cloudinaryBaseUrl = "https://api.cloudinary.com/v1_1/cld-docs";
 

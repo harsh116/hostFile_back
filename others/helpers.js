@@ -28,7 +28,7 @@ const uploadFile_sirv = require("../hosts/sirv");
 const uploadFile_cloudinary = require("../hosts/cloudinary");
 const uploadFile_nextcloud = require("../hosts/nextcloud");
 
-// console.log = consoleWrite;
+process.env.ENVIRONMENT === "prod" ? (console.log = consoleWrite) : "";
 
 const getLast = (arr) => {
   if (arr.length > 0) return arr[arr.length - 1];

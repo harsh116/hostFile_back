@@ -6,7 +6,7 @@ const fs = require("fs");
 const { consoleWrite } = require("../others/helpers");
 const { SIRV_UPLOAD_DIRECTORY } = require("../constants");
 
-process.env.PRODUCTION === "prod" ? (console.log = consoleWrite) : "";
+process.env.ENVIRONMENT === "prod" ? (console.log = consoleWrite) : "";
 
 const sirvBaseUrl = "https://api.sirv.com/v2";
 
