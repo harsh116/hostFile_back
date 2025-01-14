@@ -1,4 +1,3 @@
-const FormData = require("form-data");
 const fetch = require("node-fetch");
 const fs = require("fs");
 
@@ -23,6 +22,7 @@ const bufferToStream = (buffer, ogname) => {
   return readStream;
 };
 
+// get bearer token
 const getAuthToken = async () => {
   const sirvTokenUrl = `${sirvBaseUrl}/token`;
   const jsonbody = JSON.stringify({

@@ -17,21 +17,31 @@ error
 {status : "error"}
 
 catbox
+POST
 payload : headers {filename : ogname}
 body : FormData {reqType, fileToUpload}
 response : <upload_url> : string(text)
 
 sirv
-payload : headers : "Content-Type": "application/octlet-stream",
-        authorization: `Bearer ${bearer_token}`, oauth2 token, valid for 20 min
+POST
+payload :  headers : "Content-Type": "application/octlet-stream",
+        authorization: `Bearer ${bearer_token}`, bearer token, valid for 20 min
 body : direct filestream
 response : no body, sharable link of particular format
 
 cloudinary
+POST
 payload:
 body : FormData {file,api_key,upload_preset}, file : buffer, rest 2 are strings
 response : {...url,bytes,secure_url,original_filename,etc} | string which is basically some error message
 url is important here
+
+nextcloud
+PUT
+payload: headers : "Content-Type": "application/octlet-stream",
+        authorization: `Basic ${basic_token}`,
+body : fileBuffer instead of stream this time
+response : no body
 
 uploadFile
 // accepts object {file : buffer, ogName: string}
